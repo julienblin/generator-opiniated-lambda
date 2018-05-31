@@ -1,0 +1,45 @@
+service: <%= service %>
+
+custom:
+  environment: ${opt:stage}
+  parameterStorePrefix: /<%= service %>/${opt:stage}
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stackTags:
+    application: <%= service %>
+  iamRoleStatements:
+    - Effect: "Allow" # X-Ray permissions
+      Action:
+        - "xray:PutTraceSegments"
+        - "xray:PutTelemetryRecords"
+      Resource:
+        - "*"
+    - Effect: "Allow" # SSM Parameter store
+      Action:
+        - "ssm:GetParameterHistory"
+        - "ssm:GetParametersByPath"
+      Resource:
+        - "Fn::Join":
+            - ":"
+            -
+              - "arn"
+              - Ref: "AWS::Partition"
+              - "ssm"
+              - Ref: "AWS::Region"
+              - Ref: "AWS::AccountId"
+              - "parameter${self:custom.parameterStorePrefix}*"
+
+functions:
+  checkHealth:
+    handler: src/handlers/health.handler
+    events:
+      - http:
+          path: health
+          method: get
+          cors: true

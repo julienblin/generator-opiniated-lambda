@@ -1,0 +1,25 @@
+{
+  "name": "<%= name %>",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "sls offline start -s",
+    "start:debug": "node --inspect ./node_modules/serverless/bin/serverless offline start -s",
+    "lint": "tslint --project tsconfig.json",
+    "lint:fix": "tslint --project tsconfig.json --fix",
+    "test": "mocha -r ts-node/register tests/unit/**/*-tests.ts",
+    "cover": "nyc mocha -r ts-node/register -r source-map-support/register tests/unit/**/*-tests.ts",
+    "deploy": "serverless deploy -s",
+    "pkg": "serverless package -s"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "reporter": [
+      "text",
+      "cobertura",
+      "html"
+    ]
+  }
+}

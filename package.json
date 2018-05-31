@@ -1,0 +1,27 @@
+{
+  "name": "generator-opiniated-lambda",
+  "version": "1.0.0",
+  "description": "A Yeoman generator for AWS Lambda APIs.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "generators"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julienblin/generator-opiniated-lambda.git"
+  },
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/julienblin/generator-opiniated-lambda/issues"
+  },
+  "homepage": "https://github.com/julienblin/generator-opiniated-lambda#readme",
+  "dependencies": {
+    "yeoman-generator": "^2.0.5"
+  }
+}
