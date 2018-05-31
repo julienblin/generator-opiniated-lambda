@@ -75,12 +75,17 @@ module.exports = class extends Generator {
       this.destinationPath("README.md"),
       this.props
     );
-    this.fs.copy(this.templatePath(".editorconfig"),
+    this.fs.copy(
+      this.templatePath(".editorconfig"),
       this.destinationPath(".editorconfig")
     );
     this.fs.copy(
       this.templatePath(".gitignore"),
       this.destinationPath(".gitignore")
+    );
+    this.fs.copy(
+      this.templatePath("local.config.json"),
+      this.destinationPath("local.config.json")
     );
     this.fs.copy(
       this.templatePath("tsconfig.json"),
@@ -115,6 +120,11 @@ module.exports = class extends Generator {
     this.fs.copy(
       this.templatePath("src/config.ts"),
       this.destinationPath("src/config.ts"),
+    );
+    this.fs.copyTpl(
+      this.templatePath("src/handlers/authorizer.ts"),
+      this.destinationPath("src/handlers/authorizer.ts"),
+      this.props
     );
     this.fs.copyTpl(
       this.templatePath("src/handlers/container.ts"),

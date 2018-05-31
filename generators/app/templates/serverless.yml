@@ -39,6 +39,9 @@ provider:
               - "parameter${self:custom.parameterStorePrefix}*"
 
 functions:
+  authorizer:
+    handler: src/handlers/authorizer.handler
+
   checkHealth:
     handler: src/handlers/health.handler
     events:
