@@ -5,6 +5,7 @@ custom:
   timestamp: ${file(./build/timestamp.js)}
   environment: ${opt:stage}
   parameterStorePrefix: /<%= name %>/${opt:stage}
+  openApi: true
 
 plugins:
   - serverless-webpack

@@ -2,6 +2,24 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug (local)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run-script",
+        "start:debug",
+        "--",
+        "local"
+      ],
+      "port": 9229,
+      "outFiles": [
+        "${workspaceRoot}/.webpack/**/*.js"
+      ],
+      "smartStep": true,
+      "protocol": "inspector"
+    },
+    {
       "name": "Attach",
       "type": "node",
       "request": "attach",
