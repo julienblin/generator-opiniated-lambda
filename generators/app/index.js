@@ -70,6 +70,11 @@ module.exports = class extends Generator {
       this.destinationPath("openapi.yml"),
       this.props
     );
+    this.fs.copyTpl(
+      this.templatePath("README.md"),
+      this.destinationPath("README.md"),
+      this.props
+    );
     this.fs.copy(this.templatePath(".editorconfig"),
       this.destinationPath(".editorconfig")
     );
