@@ -1,8 +1,10 @@
-service: <%= service %>
+service: <%= name %>
 
 custom:
+  apiVersion: ${file(./build/api-version.js)}
+  timestamp: ${file(./build/timestamp.js)}
   environment: ${opt:stage}
-  parameterStorePrefix: /<%= service %>/${opt:stage}
+  parameterStorePrefix: /<%= name %>/${opt:stage}
 
 plugins:
   - serverless-webpack
@@ -12,7 +14,7 @@ provider:
   name: aws
   runtime: nodejs8.10
   stackTags:
-    application: <%= service %>
+    application: <%= name %>
   iamRoleStatements:
     - Effect: "Allow" # X-Ray permissions
       Action:
@@ -43,3 +45,5 @@ functions:
           path: health
           method: get
           cors: true
+
+resources: ${file(serverless.resources.yml):resources}

@@ -10,7 +10,13 @@ module.exports = class extends Generator {
       type: "input",
       name: "name",
       message: "Project name",
-      default: this.appname
+      default: this.appname,
+      require: true
+    },
+    {
+      type: "input",
+      name: "description",
+      message: "Description"
     }]).then((answers) => {
       this.props = answers;
       this.destinationRoot(`./${answers.name}`);
@@ -47,12 +53,22 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath("_package.json"),
       this.destinationPath("package.json"),
-      { name: this.props.name }
+      this.props
     );
     this.fs.copyTpl(
       this.templatePath("serverless.yml"),
       this.destinationPath("serverless.yml"),
-      { service: this.props.name }
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath("serverless.resources.yml"),
+      this.destinationPath("serverless.resources.yml"),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath("openapi.yml"),
+      this.destinationPath("openapi.yml"),
+      this.props
     );
     this.fs.copy(this.templatePath(".editorconfig"),
       this.destinationPath(".editorconfig")
@@ -73,19 +89,49 @@ module.exports = class extends Generator {
       this.templatePath("webpack.config.js"),
       this.destinationPath("webpack.config.js")
     );
+
+    this.fs.copy(
+      this.templatePath("build/api-version.js"),
+      this.destinationPath("build/api-version.js")
+    );
+    this.fs.copy(
+      this.templatePath("build/openapi.js"),
+      this.destinationPath("build/openapi.js")
+    );
     this.fs.copy(
       this.templatePath("build/source-map-install.js"),
       this.destinationPath("build/source-map-install.js")
     );
+    this.fs.copy(
+      this.templatePath("build/timestamp.js"),
+      this.destinationPath("build/timestamp.js")
+    );
 
+    this.fs.copy(
+      this.templatePath("src/config.ts"),
+      this.destinationPath("src/config.ts"),
+    );
     this.fs.copyTpl(
       this.templatePath("src/handlers/container.ts"),
       this.destinationPath("src/handlers/container.ts"),
-      { service: this.props.name }
+      this.props
     );
     this.fs.copy(
       this.templatePath("src/handlers/health.ts"),
       this.destinationPath("src/handlers/health.ts"),
+    );
+
+    this.fs.copy(
+      this.templatePath("vscode/extensions.json"),
+      this.destinationPath(".vscode/extensions.json"),
+    );
+    this.fs.copy(
+      this.templatePath("vscode/launch.json"),
+      this.destinationPath(".vscode/launch.json"),
+    );
+    this.fs.copy(
+      this.templatePath("vscode/settings.json"),
+      this.destinationPath(".vscode/settings.json"),
     );
   }
 };

@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach",
+      "type": "node",
+      "request": "attach",
+      "cwd": "${workspaceRoot}",
+      "port": 9229,
+      "outFiles": [
+        "${workspaceRoot}/.webpack/**/*.js"
+      ],
+      "smartStep": true,
+      "protocol": "inspector"
+    }
+  ]
+}

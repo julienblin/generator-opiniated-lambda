@@ -2,7 +2,7 @@ import {
   ConfigService, createContainerFactory,
   HealthChecker, ICheckHealth, SSMParameterStoreConfigService } from "opiniated-lambda";
 
-const SERVICE_NAME = "<%= service %>";
+const SERVICE_NAME = "<%= name %>";
 
 /** The specification for the container. */
 export interface Container {
