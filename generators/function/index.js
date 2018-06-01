@@ -1,5 +1,6 @@
 const Generator = require('yeoman-generator');
 const yaml = require('js-yaml');
+const changeCase = require('change-case');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -10,7 +11,7 @@ module.exports = class extends Generator {
     return this.prompt([{
       type: "input",
       name: "name",
-      message: "Function name",
+      message: "Function name (kebab-case e.g. products-management)",
       require: true
     },
     {
@@ -109,7 +110,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath(`src/handlers/handler.${this.props.type}.ts`),
       this.destinationPath(`src/handlers/${this.props.name}.ts`),
-      { ...this.props, nameCapitalized: `${this.props.name.charAt(0).toUpperCase()}${this.props.name.slice(1)}` }
+      { ...this.props, pascalName: changeCase.pascal(this.props.name) }
     );
 
     if (this.props.serverless) {

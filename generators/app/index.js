@@ -9,7 +9,7 @@ module.exports = class extends Generator {
     return this.prompt([{
       type: "input",
       name: "name",
-      message: "Project name",
+      message: "Project name (kebab-case e.g. my-awesome-project)",
       default: this.appname,
       require: true
     },

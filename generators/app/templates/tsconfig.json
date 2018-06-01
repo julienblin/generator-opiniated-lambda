@@ -13,7 +13,7 @@
       "@container": ["./src/handlers/container"],
       "@config": ["./src/config"],
       "@handlers/*": ["./src/handlers/handlers/*"],
-      "@services/*": ["./src/handlers/services/*"],
+      "@services/*": ["./src/services/*"],
       "@test/*": ["./test/unit/*"]
     }
   }
