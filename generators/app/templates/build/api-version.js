@@ -6,13 +6,14 @@
 module.exports = () => {
   const fs = require('fs');
   const childProcess = require('child_process');
+  const processStdio = { stdio: ['pipe', 'pipe', 'ignore']};
 
   const package = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
   try {
-    const gitShortCommit = childProcess.execSync('git rev-parse --short HEAD').toString().trim();
+    const gitShortCommit = childProcess.execSync('git rev-parse --short HEAD', processStdio).toString().trim();
     let isDirty = false;
     try {
-      childProcess.execSync('git diff --no-ext-diff --quiet --exit-code')
+      childProcess.execSync('git diff --no-ext-diff --quiet --exit-code', processStdio);
     } catch (error) {
       isDirty = true;
     }
