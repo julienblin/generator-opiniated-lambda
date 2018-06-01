@@ -1,8 +1,34 @@
 const Generator = require('yeoman-generator');
+const figlet = require('figlet');
+const path = require('path');
 
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
+  }
+
+  initializing() {
+    this.log();
+    this.log();
+    this.log("            IIIIIIII                    ");
+    this.log("            IIIIIIII                    ");
+    this.log("                IIIII                   ");
+    this.log("                IIIII,                  ");
+    this.log("                 IIIII                  ");
+    this.log("                 IIIIII                 ");
+    this.log("                IIIIIII                 ");
+    this.log("               IIIIIIIII                ");
+    this.log("              IIIIIIIIIII               ");
+    this.log("             IIIIII IIIII               ");
+    this.log("            IIIIII  IIIII7              ");
+    this.log("           IIIIII    IIIII,             ");
+    this.log("          IIIIII      IIIII             ");
+    this.log("         IIIIII       IIIIII  II        ");
+    this.log("        IIIIII         IIIIIIIII,       ");
+    this.log("       IIIIII          ,IIIIIIIII       ");
+    this.log("      IIIIII            IIIIII          ");
+    this.log();
+    this.log();
   }
 
   prompting() {
@@ -161,5 +187,17 @@ module.exports = class extends Generator {
       this.templatePath("vscode/settings.json"),
       this.destinationPath(".vscode/settings.json"),
     );
+  }
+
+  end() {
+    this.log();
+    this.log();
+    this.log(figlet.textSync("Have fun!"));
+    this.log();
+    this.log();
+    this.log(`cd ${this.destinationPath()}`);
+    this.log("npm start -- local to start the project locally.");
+    this.log("npm run to list all the availables scripts.");
+    this.log();
   }
 };

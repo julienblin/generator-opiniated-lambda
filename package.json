@@ -21,6 +21,7 @@
   "homepage": "https://github.com/julienblin/generator-opiniated-lambda#readme",
   "dependencies": {
     "change-case": "^3.0.2",
+    "figlet": "^1.2.0",
     "js-yaml": "^3.11.0",
     "yeoman-generator": "^2.0.5"
   }
