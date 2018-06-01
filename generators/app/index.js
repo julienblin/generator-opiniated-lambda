@@ -126,11 +126,6 @@ module.exports = class extends Generator {
       this.destinationPath("src/config.ts"),
     );
     this.fs.copyTpl(
-      this.templatePath("src/handlers/authorizer.ts"),
-      this.destinationPath("src/handlers/authorizer.ts"),
-      this.props
-    );
-    this.fs.copyTpl(
       this.templatePath("src/handlers/container.ts"),
       this.destinationPath("src/handlers/container.ts"),
       this.props

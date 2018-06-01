@@ -17,7 +17,7 @@ module.exports = class extends Generator {
       type: "list",
       name: "type",
       message: "Function type",
-      choices: ["proxy"],
+      choices: ["proxy", "authorizer", "simple"],
       require: true,
       default: "proxy"
     },
@@ -26,7 +26,7 @@ module.exports = class extends Generator {
       name: "path",
       message: "HTTP event path (.e.g. products/{id})",
       require: true,
-      when: "type.proxy"
+      when: (a) => a.type === "proxy"
     },
     {
       type: "list",
@@ -35,13 +35,13 @@ module.exports = class extends Generator {
       choices: ["get", "post", "put", "patch", "delete"],
       require: true,
       default: "get",
-      when: "type.proxy"
+      when: (a) => a.type === "proxy"
     },
     {
       type: "confirm",
       name: "cors",
       message: "Add CORS headers?",
-      when: "type.proxy"
+      when: (a) => a.type === "proxy"
     }]).then((answers) => {
       this.props = answers;
       if (this.props.path && this.props.path.startsWith("/")) {
@@ -107,9 +107,9 @@ module.exports = class extends Generator {
 
   writing() {
     this.fs.copyTpl(
-      this.templatePath("src/handlers/handler.ts"),
+      this.templatePath(`src/handlers/handler.${this.props.type}.ts`),
       this.destinationPath(`src/handlers/${this.props.name}.ts`),
-      this.props
+      { ...this.props, nameCapitalized: `${this.props.name.charAt(0).toUpperCase()}${this.props.name.slice(1)}` }
     );
 
     if (this.props.serverless) {

@@ -32,7 +32,7 @@ corsOptionsMethodResponses: &CORS_OPTIONS_METHOD_RESPONSES
       "method.response.header.Content-Type": true
 
 resources:
-  Description: <%= name %> - ${self:custom.environment}
+  Description: ${self:service}/${self:custom.environment}
   Conditions:
     OpenApi:
       Fn::Equals:
