@@ -42,6 +42,7 @@ module.exports = class extends Generator {
     this.log(`Client ${this.props.name} has been generated with unit tests.`);
     this.log(`Don't forget to register it in the src/handlers/container.`);
     this.log(`Registration should use the dependencyErrorProxy to properly encapsulate error management, e.g.:`);
-    this.log(`${changeCase.camel(this.props.name)}: ({ container }) => dependencyErrorProxy(new ${changeCase.pascal(this.props.name)}(container.configService(), "${changeCase.pascal(this.props.name)}")),`);
+    this.log();
+    this.log(`${changeCase.camel(this.props.name)}: ({ container }) => dependencyErrorProxy(new ${changeCase.pascal(this.props.name)}(container.configService()), "${changeCase.pascal(this.props.name)}"),`);
   }
 };
