@@ -12,8 +12,9 @@
     "paths": {
       "@container": ["./src/handlers/container"],
       "@config": ["./src/config"],
-      "@handlers": ["./src/handlers/handlers"],
-      "@services": ["./src/handlers/services"]
+      "@handlers/*": ["./src/handlers/handlers/*"],
+      "@services/*": ["./src/handlers/services/*"],
+      "@test/*": ["./test/unit/*"]
     }
   }
 }
