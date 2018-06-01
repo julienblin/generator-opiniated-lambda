@@ -9,6 +9,7 @@
     "lint": "tslint --project tsconfig.json",
     "lint:fix": "tslint --project tsconfig.json --fix",
     "test": "mocha",
+    "test:integration": "newman run test/integration/integration.collection.json",
     "cover": "nyc mocha",
     "deploy": "serverless deploy -s",
     "pkg": "serverless package -s"

@@ -36,6 +36,7 @@ module.exports = class extends Generator {
       "@types/chai",
       "chai",
       "mocha",
+      "newman",
       "nyc",
       "serverless",
       "serverless-offline",
@@ -147,6 +148,10 @@ module.exports = class extends Generator {
     this.fs.copy(
       this.templatePath("test/unit/handlers/container-test.ts"),
       this.destinationPath("test/unit/handlers/container-test.ts")
+    );
+    this.fs.copy(
+      this.templatePath("test/integration/integration.collection.json"),
+      this.destinationPath("test/integration/integration.collection.json")
     );
 
     this.fs.copy(
