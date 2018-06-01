@@ -10,9 +10,11 @@
     "rootDir": "./",
     "baseUrl": ".",
     "paths": {
-      "@container": ["./src/handlers/container"],
+      "@clients/*": ["./src/clients/*"],
       "@config": ["./src/config"],
+      "@container": ["./src/handlers/container"],
       "@handlers/*": ["./src/handlers/handlers/*"],
+      "@repositories/*": ["./src/repositories/*"],
       "@services/*": ["./src/services/*"],
       "@test/*": ["./test/unit/*"]
     }
