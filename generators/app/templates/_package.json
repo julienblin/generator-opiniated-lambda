@@ -8,8 +8,8 @@
     "start:debug": "node --inspect ./node_modules/serverless/bin/serverless offline start -s",
     "lint": "tslint --project tsconfig.json",
     "lint:fix": "tslint --project tsconfig.json --fix",
-    "test": "mocha -r ts-node/register tests/unit/**/*-tests.ts",
-    "cover": "nyc mocha -r ts-node/register -r source-map-support/register tests/unit/**/*-tests.ts",
+    "test": "mocha",
+    "cover": "nyc mocha",
     "deploy": "serverless deploy -s",
     "pkg": "serverless package -s"
   },

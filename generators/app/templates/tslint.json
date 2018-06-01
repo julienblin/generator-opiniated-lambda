@@ -1,6 +1,9 @@
 {
-    "extends": "tslint:recommended",
-    "rules": {
-      "interface-name": false
-    }
+  "extends": [
+    "tslint:recommended",
+    "tslint-no-unused-expression-chai"
+  ],
+  "rules": {
+    "interface-name": false
+  }
 }

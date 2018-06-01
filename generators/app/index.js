@@ -42,7 +42,10 @@ module.exports = class extends Generator {
       "serverless-webpack",
       "ts-loader",
       "ts-node",
+      "tsconfig-paths",
+      "tsconfig-paths-webpack-plugin",
       "tslint",
+      "tslint-no-unused-expression-chai",
       "typescript",
       "webpack"
     ],
@@ -134,6 +137,16 @@ module.exports = class extends Generator {
     this.fs.copy(
       this.templatePath("src/handlers/health.ts"),
       this.destinationPath("src/handlers/health.ts"),
+    );
+
+    this.fs.copy(
+      this.templatePath("test/mocha.opts"),
+      this.destinationPath("test/mocha.opts")
+    );
+
+    this.fs.copy(
+      this.templatePath("test/unit/handlers/container-test.ts"),
+      this.destinationPath("test/unit/handlers/container-test.ts")
     );
 
     this.fs.copy(

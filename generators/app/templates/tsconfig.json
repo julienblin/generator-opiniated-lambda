@@ -8,5 +8,12 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "rootDir": "./",
+    "baseUrl": ".",
+    "paths": {
+      "@container": ["./src/handlers/container"],
+      "@config": ["./src/config"],
+      "@handlers": ["./src/handlers/handlers"],
+      "@services": ["./src/handlers/services"]
+    }
   }
 }

@@ -1,5 +1,5 @@
+import { Container, createContainer } from "@container";
 import { containerLambdaAuthorizerBearer } from "opiniated-lambda";
-import { Container, createContainer } from "./container";
 
 // Authorizer λ
 export const handler = containerLambdaAuthorizerBearer<Container>(

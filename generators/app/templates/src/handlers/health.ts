@@ -1,5 +1,5 @@
+import { Container, lambdaProxyContainerFactory } from "@container";
 import { containerLambdaProxy } from "opiniated-lambda";
-import { Container, lambdaProxyContainerFactory } from "./container";
 
 // GET /health
 export const handler = containerLambdaProxy<Container>(
