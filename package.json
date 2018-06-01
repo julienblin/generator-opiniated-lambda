@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/julienblin/generator-opiniated-lambda#readme",
   "dependencies": {
+    "js-yaml": "^3.11.0",
     "yeoman-generator": "^2.0.5"
   }
 }
