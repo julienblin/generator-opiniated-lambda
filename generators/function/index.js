@@ -110,7 +110,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath(`src/handlers/handler.${this.props.type}.ts`),
       this.destinationPath(`src/handlers/${this.props.name}.ts`),
-      { ...this.props, pascalName: changeCase.pascal(this.props.name) }
+      { ...this.props, camelName: changeCase.camel(this.props.name), pascalName: changeCase.pascal(this.props.name) }
     );
 
     if (this.props.serverless) {

@@ -1,3 +1,9 @@
 {
-    "typescript.tsdk": "node_modules\\typescript\\lib"
+  "files.exclude": {
+    "**/coverage": true,
+    "**/.webpack": true,
+    "**/node_modules": true,
+    "**/.nyc_output": true,
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

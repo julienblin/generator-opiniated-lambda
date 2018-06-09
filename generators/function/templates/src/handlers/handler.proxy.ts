@@ -1,12 +1,13 @@
 import { Container, lambdaProxyContainerFactory } from "@container";
-import { containerLambdaProxy, ok } from "opiniated-lambda";
+import { container, cors, defaultProxyMiddlewares, lambda, ok, proxy } from "opiniated-lambda";
 
-// GET <%= name %>
-export const handler = containerLambdaProxy<Container>(
-  async ({}, {}) => {
-    return ok();
-  },
-  {
-    containerFactory: lambdaProxyContainerFactory,<% if (cors) { %>
-    cors: true,<% } %>
-  });
+// <%= method %> <%= name %>
+export const handler = lambda()
+  .use(container(lambdaProxyContainerFactory))<% if (cors) { %>
+  .use(cors())<% } %>
+  .use(defaultProxyMiddlewares())
+  .handler(proxy<Container>(
+    async ({}) => {
+      return ok();
+    }));
+  

@@ -1,6 +1,9 @@
 import { Container, createContainer } from "@container";
-import { containerLambda } from "opiniated-lambda";
+import { container, lambda, validateEvent } from "opiniated-lambda";
 
+/**
+ * Event interface.
+ */
 interface <%= pascalName %>Event {
   /**
    * The stage is passed by the caller, unless there is another
@@ -9,21 +12,23 @@ interface <%= pascalName %>Event {
   stage: string;
 }
 
-export const handler = containerLambda<<%= pascalName %>Event, Container>(
-  async ({}, {}) => {
-    // Do something
-    return;
-  },
-  {
-    containerFactory: ({ context, event }) => createContainer({ stage: event.stage }),
-    validation: {
-      event: {
-        properties: {
-          stage: {
-            type: "string",
-          },
-        },
-        required: [ "stage" ],
-      },
+/**
+ * JSON schema for event validation.
+ */
+const <%= camelName %>EventSchema = {
+  properties: {
+    stage: {
+      type: "string",
     },
-  });
+  },
+  required: ["stage"],
+};
+
+export const handler = lambda()
+  .use(container<<%= pascalName %>Event, Container>(({ event }) => createContainer({ stage: event.stage })))
+  .use(validateEvent(<%= camelName %>EventSchema))
+  .handler<<%= pascalName %>Event, any, Container>(
+    async ({ }) => {
+      return "hello";
+    });
+  

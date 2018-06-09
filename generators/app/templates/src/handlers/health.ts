@@ -1,10 +1,14 @@
 import { Container, lambdaProxyContainerFactory } from "@container";
-import { containerLambdaProxy } from "opiniated-lambda";
+import { CheckHealth, container, cors, defaultProxyMiddlewares, health, lambda } from "opiniated-lambda";
 
 // GET /health
-export const handler = containerLambdaProxy<Container>(
-  async ({}, { healthChecker }) => healthChecker().checkHealth(),
-  {
-    containerFactory: lambdaProxyContainerFactory,
-    cors: true,
-  });
+export const handler = lambda()
+  .use(container(lambdaProxyContainerFactory))
+  .use(cors())
+  .use(defaultProxyMiddlewares())
+  .handler(health<any, Container>(
+    "<%= name %>",
+    async ({ services: { configService } }) => ([
+      configService() as any as CheckHealth,
+    ]),
+  ));

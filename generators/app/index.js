@@ -51,30 +51,34 @@ module.exports = class extends Generator {
 
   dependencies() {
     this.npmInstall([
-      "aws-sdk",
-      "opiniated-lambda",
-      "source-map-support"
+      "ajv@latest",
+      "aws-sdk@latest",
+      "axios@latest",
+      "opiniated-lambda@latest",
+      "source-map-support@latest"
     ],
     { "save": true });
 
     this.npmInstall([
-      "@types/aws-lambda",
-      "@types/chai",
-      "chai",
-      "mocha",
-      "newman",
-      "nyc",
-      "serverless",
-      "serverless-offline",
-      "serverless-webpack",
-      "ts-loader",
-      "ts-node",
-      "tsconfig-paths",
-      "tsconfig-paths-webpack-plugin",
-      "tslint",
-      "tslint-no-unused-expression-chai",
-      "typescript",
-      "webpack"
+      "@types/aws-lambda@latest",
+      "@types/chai@latest",
+      "@types/mocha@latest",
+      "axios-mock-adapter@latest",
+      "chai@latest",
+      "mocha@latest",
+      "newman@latest",
+      "nyc@latest",
+      "serverless@latest",
+      "serverless-offline@latest",
+      "serverless-webpack@latest",
+      "ts-loader@latest",
+      "ts-node@latest",
+      "tsconfig-paths@latest",
+      "tsconfig-paths-webpack-plugin@latest",
+      "tslint@latest",
+      "tslint-no-unused-expression-chai@latest",
+      "typescript@latest",
+      "webpack@latest"
     ],
     { "save-dev": true });
   }
@@ -156,9 +160,10 @@ module.exports = class extends Generator {
       this.destinationPath("src/handlers/container.ts"),
       this.props
     );
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath("src/handlers/health.ts"),
       this.destinationPath("src/handlers/health.ts"),
+      this.props
     );
 
     this.fs.copy(
@@ -171,8 +176,8 @@ module.exports = class extends Generator {
       this.destinationPath("test/unit/handlers/container-test.ts")
     );
     this.fs.copy(
-      this.templatePath("test/integration/integration.collection.json"),
-      this.destinationPath("test/integration/integration.collection.json")
+      this.templatePath("test/e2e/e2e.collection.json"),
+      this.destinationPath("test/e2e/e2e.collection.json")
     );
 
     this.fs.copy(

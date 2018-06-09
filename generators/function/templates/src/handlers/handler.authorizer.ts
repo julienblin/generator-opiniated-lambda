@@ -1,21 +1,18 @@
 import { Container, createContainer } from "@container";
-import { containerLambdaAuthorizerBearer } from "opiniated-lambda";
+import { CustomAuthorizerEvent } from "aws-lambda";
+import { authorizerBearer, container, lambda } from "opiniated-lambda";
 
-// Authorizer λ
-export const handler = containerLambdaAuthorizerBearer<Container>(
-  async ({ bearerToken }) => {
-    if (!bearerToken) {
-      throw new Error("Missing bearer token.");
-    }
-
-    return {
-      policyDocument: {
-        Statement: [],
-        Version: "2012-10-17",
-      },
-      principalId: bearerToken,
-    };
-  },
-  {
-    containerFactory: ({ event }) => createContainer({ stage: event.methodArn.split("/")[1] }),
-  });
+// λ Authorizer
+export const handler = lambda()
+  .use(container<CustomAuthorizerEvent, Container>(
+    ({ event }) => createContainer({ stage: event.methodArn.split("/")[1] })))
+  .handler(authorizerBearer<Container>(
+    async ({ bearerToken }) => {
+      return {
+        policyDocument: {
+          Statement: [],
+          Version: "2012-10-17",
+        },
+        principalId: bearerToken,
+      };
+    }));
