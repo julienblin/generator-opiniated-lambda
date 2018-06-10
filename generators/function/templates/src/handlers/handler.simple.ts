@@ -1,5 +1,5 @@
 import { Container, createContainer } from "@container";
-import { container, lambda, validateEvent } from "opiniated-lambda";
+import { container, errorLogging, lambda, validateEvent } from "opiniated-lambda";
 
 /**
  * Event interface.
@@ -26,9 +26,9 @@ const <%= camelName %>EventSchema = {
 
 export const handler = lambda()
   .use(container<<%= pascalName %>Event, Container>(({ event }) => createContainer({ stage: event.stage })))
+  .use(errorLogging())
   .use(validateEvent(<%= camelName %>EventSchema))
   .handler<<%= pascalName %>Event, any, Container>(
     async ({ }) => {
       return "hello";
     });
-  
