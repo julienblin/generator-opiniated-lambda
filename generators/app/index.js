@@ -63,7 +63,6 @@ module.exports = class extends Generator {
       "@types/aws-lambda@latest",
       "@types/chai@latest",
       "@types/mocha@latest",
-      "axios-mock-adapter@latest",
       "chai@latest",
       "mocha@latest",
       "newman@latest",
