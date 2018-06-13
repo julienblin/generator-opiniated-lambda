@@ -51,9 +51,7 @@ module.exports = class extends Generator {
 
   dependencies() {
     this.npmInstall([
-      "ajv@latest",
       "aws-sdk@latest",
-      "axios@latest",
       "opiniated-lambda@latest",
       "source-map-support@latest"
     ],
